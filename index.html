@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<title>Evento 	ZOE</title>
+	
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Bootstrap 5 Tech Conference Template">
+	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+	<link rel="shortcut icon" href="favicon.ico"> 
+	
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:600,700,800|Roboto:300,400,700&display=swap" rel="stylesheet">
+	
+	<!-- FontAwesome JS-->
+	<script defer src="assets/fontawesome/js/all.min.js"></script>
+
+	<!-- Theme CSS -->  
+	<link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+
+	<!--Styles-->
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+/*
+		body{
+			min-height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #d6d2d2;
+		}
+*/
+		.btn{
+			text-decoration: none;
+			padding: 15px 40px;
+			color: #fff;
+			background-color: #facb16;
+			border-radius: 40px;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-weight: bolder;
+			box-shadow: 0 10px 40px rgba(255, 122, 0, 0.4)
+		}
+
+		.video-container{
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 99999;
+			background-color:rgba(255, 122, 0, 0.1);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			opacity: 0;
+			pointer-events: none;
+			transition: all 0.3s;
+		}
+
+		.video-container .close{
+			position: absolute;
+			top: 10%;
+			right: 25px;
+			font-size: 20px;
+			cursor: pointer;
+		}
+
+		.video-container .video{
+			width: 90%;
+			max-width: 800px;
+			transform: scale(0);
+			box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+			outline: none;
+			transition: all 0.3s;			
+		}
+
+		.video-container .show{
+			pointer-events: all;
+			opacity: 1;
+		}
+
+		.video-container.show video{
+			transform: scale(1s);
+		}
+
+
+
+
+	</style>
+
+
+</head> 
+
+<body>    
+	<header id="header" class="header fixed-top">	    
+		<div class="branding">
+			<div class="container-fluid">
+				<nav class="main-nav navbar navbar-expand-lg">
+					<div class="site-logo"><a class="scrollto" href="#hero-block"><img class="logo-icon" src="assets/images/Logo ZOE 2021.png" alt="logo"></a></div>    
+					
+					<div class="navbar-btn order-lg-2"><a class="btn btn-secondary" href="https://dev-generacionzoe.web.app/auth/login" target="_blank">Ingreso</a></div>
+					
+					
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					
+					<div id="navigation" class="navbar-collapse collapse  justify-content-lg-end me-lg-3">
+						<ul class="nav navbar-nav">
+							
+							<li class="nav-item"><a class="nav-link scrollto" href="#schedule-section">Programación</a></li>                                              
+							<li class="nav-item"><a class="nav-link scrollto" href="#planes">Plnaes adicionales</a></li>
+							<li class="nav-item"><a class="nav-link scrollto" href="#">ZOE</a></li>
+							
+						</ul><!--//nav-->
+					</div><!--//navabr-collapse-->
+
+				</nav><!--//main-nav-->
+				
+			</div><!--//container-->
+		</div><!--//branding-->
+	</header><!--//header-->
+	
+	<div id="hero-block" class="hero-block">
+		<div id="hero-carousel" class="hero-carousel carousel slide carousel-fade" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item-1 carousel-item active">
+				</div>
+				<div class="carousel-item-2 carousel-item">
+				</div>
+				<div class="carousel-item-3 carousel-item">
+				</div>
+			</div>
+		</div>
+		<!--
+		<div class="hero-block-mask"></div>
+		<div class="container">
+			<div class="hero-text-block">
+				<h1 class="hero-heading mb-2">Generacion ZOE</h1>
+				<div class="hero-meta mb-3"><i class="far fa-calendar-alt me-2"></i>27 y 28 Nov <i class="fas fa-map-marker-alt mx-2"></i>Cartagena, Colombia</div>
+				<div class="hero-intro mb-4">Bienvenido a la 13 Convención <br> Mundial de coaches</div>
+				<div class="hero-cta"><a class="btn btn-primary btn-lg" href="#" target="_blank">Conseguir entradas</a></div>
+				-->
+			</div><!--//hero-text-block-->
+		</div><!--//container-->
+
+	</div><!--//hero-block--> 
+	
+	<div class="stats-block theme-bg-primary text-white py-4 text-center">
+		<div class="event-countdown text-center mb-3">		   
+			<h4 class="countdown-intro mb-2 text-center mb-3">El evento inicia en:</h4>
+			<div id="countdown-box" class="countdown-box"></div>
+		</div><!--//event-countdown-->
+	</div><!--//stats-block-->
+
+	<section id="about-section" class="about-section section theme-bg-light">
+		<section id="schedule-section" class="schedule-section section">
+			<div class="container">
+				<h3 class="section-heading text-center mb-5">Programacion</h3>
+				
+				<!-- Nav tabs -->
+				<ul class="schedule-nav nav nav-pills nav-fill" id="myTab" role="tablist">
+					<li class="nav-item me-2">
+						<a class="nav-link active" id="tab-1" data-bs-toggle="tab" href="#tab-1-content" role="tab" aria-controls="tab-1-content" aria-selected="true">
+							<span class="heading">Día 1</span>
+							<span class="meta">Sabado 27 de noviembre</span>
+						</a>
+					</li>
+					<li class="nav-item me-2">
+						<a class="nav-link" id="tab-2" data-bs-toggle="tab" href="#tab-2-content" role="tab" aria-controls="tab-2-content" aria-selected="false">
+							<span class="heading">Día 2</span>
+							<span class="meta">Domingo 28 de Noviembre</span>
+						</a>
+					</li>
+				</ul>
+				
+				<!-- Tab panes -->
+				<div class="schedule-tab-content tab-content">
+					<div class="tab-pane active" id="tab-1-content" role="tabpanel" aria-labelledby="tab-1">
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">9:00 am a  <br>5:00 pm</h4>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Acreditacion</h3>
+								
+								<div class="desc">La acreditación la pueden realizar en cada uno de los hoteles donde se hospedará. De igual manera también podrá acreditarse ese día a la entrada del centro de convenciones a partir de las 4:00 pm. </div>
+							</div><!--//content-->
+						</div><!--//item-->
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">5:00 pm</h4>
+								<div class="profile">
+									<a href="" data-bs-toggle="modal" data-bs-target="">
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Apertura de puerta para el ingreso al salón</h3>
+								
+								<div class="desc"><strong>NOTA: Recuerda que debes ir vestido de blanco y preparado para la fiesta blanca</strong></div>
+							</div><!--//content-->
+						</div><!--//item-->
+						<div class="item item-other">
+							<div class="meta">
+								<h4 class="time mb-3">5:30 pm</h4>
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Introducción</h3>
+								
+							</div><!--//content-->
+						</div><!--//item-->
+						<br><br>
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">6:00 pm a 7:00 pm</h4>
+								<div class="profile">	
+								</div><!--//profile-->
+								
+							</div><!--//meta-->
+							
+							<div class="content">
+								<h3 class="title mb-3">Ceremonia de apertura</h3>
+								
+							</div><!--//content-->
+							<br><br>
+						</div><!--//item-->
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">7:00 pm a 7:30 pm</h4>
+								<div class="profile">
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Apertura</h3>
+							</div><!--//content-->
+						</div><!--//item-->
+						<br><br>
+						<div class="item item-other">
+							<div class="meta">
+								<h4 class="time mb-3">7:30 pm a 9:30 pm</h4>
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Cena</h3>
+							</div><!--//content-->
+						</div><!--//item-->
+						<br><br>
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">9:30 pm a 12:00 am</h4>
+								<div class="profile">
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Fiesta Blanca</h3>
+							</div><!--//content-->
+						</div><!--//item-->
+						
+						
+						<div class="">
+							<div class="">
+								
+								<div class="">
+									<a href="" data-bs-toggle="" ><img class=""  alt=""></a>
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							
+						</div><!--//item-->
+						
+						
+					</div><!--//tab-1-content-->
+					<div class="tab-pane no-timeline" id="tab-2-content" role="tabpanel" aria-labelledby="tab-2">
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">7:30 am a  <br>8:30 am</h4>
+								<div class=""></div><!--//profile-->
+	
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Desayuno</h3>
+								<div class="desc">Cada participante desayuna en el hotel donde se hospeda.</div>
+							</div><!--//content-->
+						</div><!--//item-->
+	
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">9:00 am a  <br>9:30 am</h4>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Inicio e introducción</h3>
+								<div class="desc">La acreditación la pueden realizar en cada uno de los hoteles donde se hospedará. De igual manera también podrá acreditarse ese día a la entrada del centro de convenciones a partir de las 4:00 pm. </div>
+							</div><!--//content-->
+						</div><!--//item-->
+	
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">9:30 am a  <br>11:20 am</h4>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Entrenamiento comunidad ZOE</h3>
+							</div><!--//content-->
+						</div><!--//item-->
+						<br>
+	
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">11:20 am a  <br>11:40 am</h4>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Break</h3>
+							</div><!--//content-->
+						</div><!--//item-->
+						<br>
+	
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">11:40 am a  <br>15:00 pm</h4>
+								<div class="">
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Bloque de Líderes</h3>
+							</div><!--//content-->
+						</div><!--//item-->
+						<br>
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">1:00 pm a  <br>1:30 pm</h4>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Bloque de Negocio</h3>
+							</div><!--//content-->
+						</div><!--//item-->
+						<br>
+	
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">1:30 pm a  <br>2:00 pm</h4>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Cierre</h3>
+							</div><!--//content-->
+						</div><!--//item-->
+						<br>
+						<div class="item item-talk">
+							<div class="meta">
+								<strong><h4 class="time mb-3">2:00 pm a  <br>3:00 pm</h4></strong>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<strong><h3 class="title mb-3">Almuerzo</h3></strong>
+							</div><!--//content-->
+						</div><!--//item-->
+						<br>
+	
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">3:00 pm a  <br>6:00 pm</h4>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Libre y preparación para la noche de gala</h3>
+							</div><!--//content-->
+						</div><!--//item-->
+						<br>
+						
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">6:00 pm a  <br>6:30 pm</h4>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Entrada</h3>
+								<strong><div class="desc">Recuerda que debes asisstir vestido de gala</div></strong>	
+							</div><!--//content-->
+						<br>
+	
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">6:30 pm a  <br> 8:00 pm</h4>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Reconocimiento y premiaciones</h3>
+								<div class="desc">Entrega de automóviles y cruceros</div>
+							</div><!--//content-->
+						</div><!--//item-->
+	
+						<div class="item item-talk">
+							<div class="meta">
+								<h4 class="time mb-3">8:00 pm a  <br>9:00 pm</h4>
+								<div class="">
+									
+								</div><!--//profile-->
+							</div><!--//meta-->
+							<div class="content">
+								<h3 class="title mb-3">Clausura del evento</h3>
+							</div><!--//content-->
+						</div><!--//item-->
+						<br>
+						</div><!--//item-->
+	
+	
+					</div><!--//tab-2-content-->
+					
+				</div><!--//schedule-tab-content-->
+				<div class="schedule-cta text-center mx-auto"><a href="../evento/programacion zoe.jpeg" class="btn btn-primary btn-lg me-md-2 d-block d-md-inline-block mb-3 mb-md-0" target="_blank">Descargar programación</a></div>
+			</div><!--//container-->
+		</section><!--//schedule-section-->
+
+		<!--<div class="media-block theme-bg-primary py-5">
+			<div class="container">-->
+				
+							
+						<div class="modal">
+							<a href="#" class="btn">Ver Presentacion</a>
+							<span class="close">&#1006</span>
+							<video src="../evento/assets/images/video.MP4" controls></video>
+						</div>
+						
+				</div><!--//container-->
+		</div><!--//media-block-->
+	</section><!--//about-section-->
+	
+
+	
+	<div class="container">
+		<hr>
+	</div>
+	
+	<section id="planes" class="venue-section section  theme-bg-primary text-white">
+		<div class="container">
+			<h3 class="section-heading text-center mb-5 text-white">Planes adicionales</h3>
+			<div class="row gx-5 py-lg-5">
+				<div class="col-12 col-lg-7 h-100">
+					<div class="figure figure-1"><img class="shadow" src="assets/images/venue/evento.jpeg" alt=""></div>
+				</div><!--//col-->
+				<div class="col-12 col-xl-3 col-lg-4 offset-lg-1 position-relative h-100 mt-5 mt-lg-0">
+					<div class="figures-holder">
+						<div class="figure figure-1"><img class="shadow" src="assets/images/venue/venue-1.jpg" alt=""></div>
+						<div class="figure figure-2"><img class="shadow" src="assets/images/venue/venue-2.jpg" alt=""></div>
+						<div class="figure figure-3"><img class="shadow" src="assets/images/venue/venue-3.jpg" alt=""></div>
+						<div class="figure figure-4"><img class="shadow" src="assets/images/venue/venue-4.jpg" alt=""></div>
+					</div><!--//figures-holder-->
+				</div><!--//col-->
+			</div><!--//row-->
+		</div><!--//container-->
+	</section><!--//venue-section-->
+
+
+	<footer class="footer py-5 theme-bg-primary">
+		<div class="container text-center">
+			
+			<ul class="social-list list-inline mb-4"> 
+				<li class="list-inline-item me-3"><a href="#"><i class="fas fa-envelope"></i></a></li>
+				<li class="list-inline-item me-3"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
+				<li class="list-inline-item me-3"><a href="#"><i class="fab fa-instagram fa-fw"></i></a></li>
+				<li class="list-inline-item me-0"><a href="#"><i class="fab fa-youtube fa-fw"></i></a></li>
+			</ul><!--//social-list-->
+			
+			
+			<ul class="footer-links list-inline mx-auto mb-4">
+							
+				<li class="list-inline-item"><a href="#">Terminos y condiciones</a></li>
+				<li class="list-inline-item">|</li>
+				<li class="list-inline-item me-0"><a href="#">Privacidad</a></li>
+			</ul><!--//footer-link-->
+			
+			 <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+			<small class="copyright">Designed with - BNF</small>
+			
+		</div><!--//container-->	    
+	</footer>
+
+	
+	
+	<!-- Javascript -->          
+	<script src="assets/plugins/popper.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script src="assets/plugins/smoothscroll.min.js"></script>
+	<script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+	<script src="assets/js/main.js"></script>  
+	<script>
+		const btn= document.querySelector('.btn');
+
+		const videoContainer = document.querySelector('.video-container');
+
+		const close = document.querySelector('.close');
+
+
+		btn.addEventListener('click',()=>{
+			videoContainer.classList.add('show');
+		})
+		
+		close.addEventListener('click',()=>{
+			videoContainer.classList.remove('show');
+		})
+	</script>
+
+</body>
+</html> 
+
